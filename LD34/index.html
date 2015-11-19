@@ -1,0 +1,51 @@
+<html>
+<head>
+<title> Testando Coisas pra LD34 </title>
+</head>
+
+<body>
+
+<script type = "text/javascript" src = "phaser.js"></script>
+
+<script type = "text/javascript">
+
+var game = new Phaser.Game(800,600,Phaser.AUTO,null,{preload: preload, create: create, update: update},true,false);
+
+function retorna(e)
+{
+  console.log(e);
+}
+
+function preload()
+{
+  game.load.tilemap("mapa","mapa_de_zoas.json",null,Phaser.Tilemap.TILED_JSON);
+  game.load.image("tileset","tileset.png");
+  game.load.spritesheet("trevor_sprites","trevor.png",16,32);
+}
+
+function create()
+{
+  game.physics.startSystem(Phaser.Physics.NINJA);
+
+  trevor = this.add.sprite(300,300,"trevor_sprites");
+
+  mapa = this.add.tilemap("mapa");
+  mapa.addTilesetImage("Tileset","tileset");
+  layer = mapa.createLayer("1");
+  mapa.setCollision(1);
+  game.physics.p2.convertTilemap(mapa,layer);
+
+  game.physics.enable(trevor);
+  game.physics.p2.gravity.y = 300;
+  trevor.body.fixedRotation = true;
+}
+
+function update()
+{
+}
+
+</script>
+
+</body>
+
+</html>
