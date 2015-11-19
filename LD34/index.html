@@ -32,14 +32,34 @@ function create()
   mapa = this.add.tilemap("mapa");
   mapa.addTilesetImage("Tileset","tileset");
   layer = mapa.createLayer("1");
+  layer.resizeWorld();
   mapa.setCollision(1);
 
   game.physics.enable(trevor);
   game.physics.arcade.gravity.y = 300;
+  game.camera.follow(trevor);
 }
 
 function update()
 {
+  game.physics.arcade.collide(trevor,layer);
+
+  var cursors = game.input.keyboard.createCursorKeys();
+
+  if(cursors.left.isDown)
+  {
+    trevor.body.velocity.x = -200;
+  }
+
+  if(cursors.right.isDown)
+  {
+    trevor.body.velocity.x = 200;
+  }
+
+  if(cursors.up.isDown && trevor.body.onFloor())
+  {
+    trevor.body.velocity.y = -300;
+  }
 }
 
 </script>
