@@ -25,7 +25,7 @@ function preload()
 
 function create()
 {
-  game.physics.startSystem(Phaser.Physics.NINJA);
+  game.physics.startSystem(Phaser.Physics.ARCADE);
 
   trevor = this.add.sprite(300,300,"trevor_sprites");
 
@@ -33,11 +33,9 @@ function create()
   mapa.addTilesetImage("Tileset","tileset");
   layer = mapa.createLayer("1");
   mapa.setCollision(1);
-  game.physics.p2.convertTilemap(mapa,layer);
 
   game.physics.enable(trevor);
-  game.physics.p2.gravity.y = 300;
-  trevor.body.fixedRotation = true;
+  game.physics.arcade.gravity.y = 300;
 }
 
 function update()
