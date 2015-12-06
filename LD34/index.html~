@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Mas que raiva desse editor!</title>
+</head>
+
+<body>
+
+<script type = "text/javascript" src = "phaser.js"></script>
+<script type = "text/javascript" src = "preload.js"></script>
+<script type = "text/javascript" src = "nivel1.js"></script>
+<script type = "text/javascript" src = "menu.js"></script>
+<script type = "text/javascript" src = "gameover.js"></script>
+<script type = "text/javascript" src = "win.js"></script>
+<script type = "text/javascript">
+
+var game = new Phaser.Game(320,240,Phaser.AUTO,"",null,true,false);
+
+game.state.add("preload",preload);
+game.state.add("nivel1",nivel1);
+game.state.add("menu",menu);
+game.state.add("game_over",gameOver);
+game.state.add("win",win);
+
+game.state.start("preload");
+
+
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,68 +1,32 @@
 <html>
 <head>
-<title> Testando Coisas pra LD34 </title>
+<title>Mas que raiva desse editor!</title>
 </head>
 
 <body>
 
 <script type = "text/javascript" src = "phaser.js"></script>
-
+<script type = "text/javascript" src = "preload.js"></script>
+<script type = "text/javascript" src = "nivel1.js"></script>
+<script type = "text/javascript" src = "menu.js"></script>
+<script type = "text/javascript" src = "gameover.js"></script>
+<script type = "text/javascript" src = "win.js"></script>
 <script type = "text/javascript">
 
-var game = new Phaser.Game(800,600,Phaser.AUTO,null,{preload: preload, create: create, update: update},true,false);
+var game = new Phaser.Game(320,240,Phaser.CANVAS,"",null,true,false);
 
-function retorna(e)
-{
-  console.log(e);
-}
+game.state.add("preload",preload);
+game.state.add("nivel1",nivel1);
+game.state.add("menu",menu);
+game.state.add("game_over",gameOver);
+game.state.add("win",win);
 
-function preload()
-{
-  game.load.tilemap("mapa","mapa_de_zoas.json",null,Phaser.Tilemap.TILED_JSON);
-  game.load.image("tileset","tileset.png");
-  game.load.spritesheet("trevor_sprites","trevor.png",16,32);
-}
+game.state.start("preload");
 
-function create()
-{
-  game.physics.startSystem(Phaser.Physics.ARCADE);
-
-  trevor = this.add.sprite(300,300,"trevor_sprites");
-
-  mapa = this.add.tilemap("mapa");
-  mapa.addTilesetImage("Tileset","tileset");
-  layer = mapa.createLayer("1");
-  layer.resizeWorld();
-  mapa.setCollision(1);
-
-  game.physics.enable(trevor);
-  game.physics.arcade.gravity.y = 300;
-  game.camera.follow(trevor);
-}
-
-function update()
-{
-  game.physics.arcade.collide(trevor,layer);
-
-  var cursors = game.input.keyboard.createCursorKeys();
-
-  if(cursors.left.isDown)
-  {
-    trevor.body.velocity.x = -200;
-  }
-
-  if(cursors.right.isDown)
-  {
-    trevor.body.velocity.x = 200;
-  }
-
-  if(cursors.up.isDown && trevor.body.onFloor())
-  {
-    trevor.body.velocity.y = -300;
-  }
-}
 
 </script>
+
+
 
 </body>
 
